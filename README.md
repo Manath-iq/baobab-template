@@ -12,5 +12,4 @@ python3 -m http.server 4173
 
 ## Публикация
 
-Сайт автоматически публикуется в GitHub Pages после каждого пуша в ветку `main`.
-Workflow находится в `.github/workflows/pages.yml`.
+GitHub Pages автоматически публикует сайт после каждого пуша в ветку `main`.
