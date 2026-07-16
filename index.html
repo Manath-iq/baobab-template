@@ -4,6 +4,11 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content="Баобаб — семейная мастерская шоколада и кофейня в Нижнекамске." />
+    <meta name="theme-color" content="#f7f0e8" />
+    <meta property="og:locale" content="ru_RU" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Баобаб — семейная мастерская шоколада" />
+    <meta property="og:description" content="Шоколад, который хочется помнить. Мастерская и кофейня в Нижнекамске." />
     <title>Баобаб — семейная мастерская шоколада</title>
     <link rel="icon" href="favicon.svg" type="image/svg+xml" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -12,12 +17,13 @@
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
+    <a class="skip-link" href="#top">К содержимому</a>
     <div class="page-grain" aria-hidden="true"></div>
     <header class="header shell" data-header>
       <a class="brand" href="#top" aria-label="Баобаб — на главную"><img src="logo.png" alt="Баобаб" /></a>
       <button class="menu-button" type="button" aria-expanded="false" aria-controls="main-menu"><span class="sr-only">Открыть меню</span><span></span><span></span></button>
       <nav class="nav" id="main-menu" aria-label="Главная навигация">
-        <a href="#catalog">Шоколад</a>
+        <a href="#catalog">Меню</a>
         <a href="#gifts">Подарки</a>
         <a href="#cafe">Кофейня</a>
         <a href="#workshop">Мастер‑классы</a>
@@ -25,11 +31,10 @@
       </nav>
       <div class="header-links">
         <a href="#visit" class="header-link">Нижнекамск</a>
-        <button class="cart-button" type="button" data-cart-open aria-label="Открыть корзину"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 8h14l-1 12H6L5 8Z"/><path d="M8 8V6a4 4 0 0 1 8 0v2"/></svg><b data-cart-count>0</b></button>
       </div>
     </header>
 
-    <main id="top">
+    <main id="top" tabindex="-1">
       <section class="hero shell" aria-labelledby="hero-title">
         <div class="hero__copy reveal">
           <p class="eyebrow">Нижнекамск · с любовью к вкусу</p>
@@ -61,17 +66,87 @@
 
       <section class="catalog section section--tint" id="catalog" aria-labelledby="catalog-title">
         <div class="shell">
-          <div class="section-heading">
-            <div><p class="eyebrow">Витрина Баобаба</p><h2 id="catalog-title">Выберите свой<br /><em>шоколадный ритуал.</em></h2></div>
-            <p>В меню — трюфели, шоколадные плитки, фигурки и авторские десерты. Маленькие серии готовим вручную — поэтому витрина всегда меняется.</p>
-          </div>
-          <div class="catalog__layout">
-            <figure class="catalog__image"><img src="assets/assortment.png" alt="Ассорти шоколадных трюфелей" /></figure>
-            <div class="product-list" aria-label="Популярные позиции">
-              <article class="product"><p class="product__number">01</p><div><h3>Ассорти трюфелей</h3><p>От классики до смелых вкусов — в коробке для двоих или для целой компании.</p></div><button class="round-button" type="button" data-add="Ассорти трюфелей" aria-label="Добавить ассорти трюфелей">+</button></article>
-              <article class="product"><p class="product__number">02</p><div><h3>Шоколадные плитки</h3><p>Молочный, белый, горький 70% и насыщенный 100% какао.</p></div><button class="round-button" type="button" data-add="Шоколадные плитки" aria-label="Добавить шоколадные плитки">+</button></article>
-              <article class="product"><p class="product__number">03</p><div><h3>Набор «Королевские финики»</h3><p>Тот самый десерт, за которым возвращаются без повода.</p></div><button class="round-button" type="button" data-add="Набор Королевские финики" aria-label="Добавить набор королевские финики">+</button></article>
-              <a class="catalog__all text-link" href="#visit">Посмотреть витрину в мастерской <span>↗</span></a>
+          <div class="menu-showcase" data-menu-showcase>
+            <div class="menu-scroll-scene" data-menu-scene>
+              <div class="menu-scroll-pin">
+                <div class="section-heading menu-heading">
+                  <div><p class="eyebrow">Меню Баобаба</p><h2 id="catalog-title">Маленькие вещи,<br /><em>которые радуют.</em></h2></div>
+                  <p>Листайте — вкусы сменяют друг друга по кругу. Небольшие партии готовим вручную, поэтому меню меняется вместе с настроением мастерской.</p>
+                </div>
+
+                <div class="menu-accordion" aria-label="Сладости в меню">
+                  <article class="menu-accordion__item is-active" data-menu-item data-menu-name="Печенье с фундуком" data-menu-number="01">
+                    <div class="menu-accordion__heading">
+                      <span class="menu-accordion__number">01</span>
+                      <h3 class="menu-accordion__name">Печенье<br />с фундуком</h3>
+                    </div>
+                    <div class="menu-accordion__panel">
+                      <p>Нежное песочное печенье с кремовой начинкой из молочного шоколада и цельного фундука.</p>
+                    </div>
+                  </article>
+
+                  <article class="menu-accordion__item" data-menu-item data-menu-name="Печенье с шоколадной крошкой" data-menu-number="02">
+                    <div class="menu-accordion__heading">
+                      <span class="menu-accordion__number">02</span>
+                      <h3 class="menu-accordion__name">Печенье с<br />шоколадной крошкой</h3>
+                    </div>
+                    <div class="menu-accordion__panel">
+                      <p>Мягкое печенье с щедрой россыпью шоколадной крошки — тот самый вкус к чашке горячего какао.</p>
+                    </div>
+                  </article>
+
+                  <article class="menu-accordion__item" data-menu-item data-menu-name="Кокос в шоколаде" data-menu-number="03">
+                    <div class="menu-accordion__heading">
+                      <span class="menu-accordion__number">03</span>
+                      <h3 class="menu-accordion__name">Кокос<br />в шоколаде</h3>
+                    </div>
+                    <div class="menu-accordion__panel">
+                      <p>Воздушная кокосовая начинка в тонком слое молочного шоколада — мягкий тропический вкус к кофе.</p>
+                    </div>
+                  </article>
+
+                  <article class="menu-accordion__item" data-menu-item data-menu-name="Шоколадный брауни" data-menu-number="04">
+                    <div class="menu-accordion__heading">
+                      <span class="menu-accordion__number">04</span>
+                      <h3 class="menu-accordion__name">Шоколадный<br />брауни</h3>
+                    </div>
+                    <div class="menu-accordion__panel">
+                      <p>Плотный брауни с кусочками орехов и бархатной шоколадной серединой.</p>
+                    </div>
+                  </article>
+
+                  <article class="menu-accordion__item" data-menu-item data-menu-name="Вафли с мороженым" data-menu-number="05">
+                    <div class="menu-accordion__heading">
+                      <span class="menu-accordion__number">05</span>
+                      <h3 class="menu-accordion__name">Вафли<br />с мороженым</h3>
+                    </div>
+                    <div class="menu-accordion__panel">
+                      <p>Тёплые воздушные вафли, банан, шарик ванильного мороженого и щедрая струйка шоколада.</p>
+                    </div>
+                  </article>
+                </div>
+
+                <div class="menu-stage" data-menu-carousel aria-label="Круговая карусель сладостей, управляемая прокруткой">
+                  <div class="menu-orbit" aria-hidden="true"><span></span><span></span></div>
+                  <div class="menu-orbit__track">
+                    <figure class="menu-product-visual" data-menu-visual>
+                      <img src="assets/menu/hazelnut_cookies.png" alt="Печенье с начинкой из молочного шоколада и фундука" />
+                    </figure>
+                    <figure class="menu-product-visual" data-menu-visual>
+                      <img src="assets/menu/chocolate_chip_cookies.png" alt="Печенье с шоколадной крошкой" />
+                    </figure>
+                    <figure class="menu-product-visual" data-menu-visual>
+                      <img src="assets/menu/bounty_in_chocolate.png" alt="Кокосовые батончики в молочном шоколаде" />
+                    </figure>
+                    <figure class="menu-product-visual" data-menu-visual>
+                      <img src="assets/menu/brownie.png" alt="Шоколадный брауни с орехами" />
+                    </figure>
+                    <figure class="menu-product-visual" data-menu-visual>
+                      <img src="assets/menu/regular_waffles.png" alt="Воздушные вафли с бананом, мороженым и шоколадом" />
+                    </figure>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -108,9 +183,8 @@
       </section>
     </main>
 
-    <footer class="footer shell"><a class="brand" href="#top"><img src="logo.png" alt="Баобаб" /></a><p>Семейная мастерская шоколада<br />в Нижнекамске</p><div><a href="#catalog">Шоколад</a><a href="#gifts">Подарки</a><a href="#workshop">Мастер‑классы</a></div><p>© Баобаб, 2026</p></footer>
+    <footer class="footer shell"><a class="brand" href="#top"><img src="logo.png" alt="Баобаб" /></a><p>Семейная мастерская шоколада<br />в Нижнекамске</p><div><a href="#catalog">Меню</a><a href="#gifts">Подарки</a><a href="#workshop">Мастер‑классы</a></div><p>© Баобаб, 2026</p></footer>
 
-    <dialog class="cart" data-cart-dialog aria-labelledby="cart-title"><button class="dialog-close" type="button" data-cart-close aria-label="Закрыть">×</button><p class="eyebrow">Ваш выбор</p><h2 id="cart-title">Корзина</h2><ul data-cart-items><li class="cart__empty">Пока здесь тихо. Добавьте что-нибудь из витрины.</li></ul><a class="button button--dark" href="#visit" data-cart-close>Оформить в мастерской <span>↗</span></a></dialog>
     <script src="main.js"></script>
   </body>
 </html>
