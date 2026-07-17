@@ -21,7 +21,7 @@
     <div class="page-grain" aria-hidden="true"></div>
     <header class="header shell" data-header>
       <a class="brand" href="#top" aria-label="Баобаб — на главную"><img src="logo.png" alt="Баобаб" /></a>
-      <button class="menu-button" type="button" aria-expanded="false" aria-controls="main-menu"><span class="sr-only">Открыть меню</span><span></span><span></span></button>
+      <button class="menu-button" type="button" aria-expanded="false" aria-controls="main-menu"><span class="sr-only">Открыть меню</span><span class="menu-button__icon" aria-hidden="true"><i data-lucide="menu" class="icon"></i><i data-lucide="x" class="icon"></i></span></button>
       <nav class="nav" id="main-menu" aria-label="Главная навигация">
         <a href="#catalog">Меню</a>
         <a href="#gifts">Подарки</a>
@@ -35,18 +35,31 @@
     </header>
 
     <main id="top" tabindex="-1">
-      <section class="hero shell" aria-labelledby="hero-title">
-        <div class="hero__copy reveal">
+      <section class="hero shell" aria-labelledby="hero-title" data-hero>
+        <figure class="hero__film" aria-label="Видеовступление шоколадной мастерской">
+          <video class="hero__video" data-hero-video autoplay muted playsinline preload="auto" poster="assets/chocolate-hero.png">
+            <source src="assets/baobab-hero.mp4" type="video/mp4" />
+          </video>
+          <img class="hero__poster" src="assets/chocolate-hero.png" alt="" />
+          <figcaption>Вкус начинается с настоящего какао.</figcaption>
+          <div class="hero__film-label" aria-hidden="true"><span>01</span><span>Шоколадная<br />мастерская</span></div>
+        </figure>
+        <div class="hero__copy" data-hero-copy>
           <p class="eyebrow">Нижнекамск · с любовью к вкусу</p>
           <h1 id="hero-title">Шоколад, который<br /><em>хочется помнить.</em></h1>
           <p class="hero__text">Семейная мастерская, где вручную создают трюфели, шоколад и маленькие поводы собраться за одним столом.</p>
           <div class="actions">
-            <a class="button button--dark" href="#catalog">Выбрать шоколад <span>↗</span></a>
-            <a class="text-link" href="#visit">Зайти на кофе <span>↓</span></a>
+            <a class="button button--dark" href="#catalog">Выбрать шоколад <i data-lucide="move-up-right" class="icon" aria-hidden="true"></i></a>
+            <a class="text-link" href="#visit">Зайти на кофе <i data-lucide="arrow-down" class="icon" aria-hidden="true"></i></a>
           </div>
           <div class="hero__footnote"><span class="stamp">Сделано<br />вручную</span><p>Плитки, трюфели, подарки<br />и горячий шоколад</p></div>
         </div>
-        <figure class="hero__image reveal reveal--late"><img src="assets/chocolate-hero.png" alt="Ремесленный шоколад, трюфели и какао-бобы" /><figcaption>Вкус начинается с настоящего какао.</figcaption></figure>
+        <div class="hero__guide" data-hero-guide aria-label="В Баобабе можно">
+          <a href="#cafe"><span>01</span>Позавтракать</a>
+          <a href="#catalog"><span>02</span>Выбрать шоколад</a>
+          <a href="#gifts"><span>03</span>Собрать подарок</a>
+          <a href="#workshop"><span>04</span>На мастер‑класс</a>
+        </div>
         <div class="hero__mark" aria-hidden="true">БАОБАБ<br /><span>ШОКОЛАДНАЯ МАСТЕРСКАЯ</span></div>
       </section>
 
@@ -57,10 +70,10 @@
           <p>Купить коробку для важного человека. Остаться на какао после прогулки. Устроить мастер‑класс для команды. В Баобабе шоколад становится частью дня, который хочется сохранить.</p>
         </div>
         <div class="occasion-row" aria-label="Поводы прийти в Баобаб">
-          <a href="#catalog"><span>01</span>Для себя <b>→</b></a>
-          <a href="#gifts"><span>02</span>В подарок <b>→</b></a>
-          <a href="#cafe"><span>03</span>На завтрак <b>→</b></a>
-          <a href="#workshop"><span>04</span>На мастер‑класс <b>→</b></a>
+          <a href="#catalog"><span>01</span>Для себя <i data-lucide="arrow-right" class="icon" aria-hidden="true"></i></a>
+          <a href="#gifts"><span>02</span>В подарок <i data-lucide="arrow-right" class="icon" aria-hidden="true"></i></a>
+          <a href="#cafe"><span>03</span>На завтрак <i data-lucide="arrow-right" class="icon" aria-hidden="true"></i></a>
+          <a href="#workshop"><span>04</span>На мастер‑класс <i data-lucide="arrow-right" class="icon" aria-hidden="true"></i></a>
         </div>
       </section>
 
@@ -71,7 +84,7 @@
               <div class="menu-scroll-pin">
                 <div class="section-heading menu-heading">
                   <div><p class="eyebrow">Меню Баобаба</p><h2 id="catalog-title">Маленькие вещи,<br /><em>которые радуют.</em></h2></div>
-                  <p>Листайте — вкусы сменяют друг друга по кругу. Небольшие партии готовим вручную, поэтому меню меняется вместе с настроением мастерской.</p>
+                  <p><span class="menu-copy--desktop">Листайте — вкусы сменяют друг друга по кругу. Небольшие партии готовим вручную, поэтому меню меняется вместе с настроением мастерской.</span><span class="menu-copy--mobile">Печенье, брауни, кокос в шоколаде и вафли — выбирайте то, что хочется к кофе прямо сейчас.</span></p>
                 </div>
 
                 <div class="menu-accordion" aria-label="Сладости в меню">
@@ -79,6 +92,7 @@
                     <div class="menu-accordion__heading">
                       <span class="menu-accordion__number">01</span>
                       <h3 class="menu-accordion__name">Печенье<br />с фундуком</h3>
+                      <img class="menu-accordion__thumb" src="assets/menu/hazelnut_cookies.png" alt="" loading="lazy" />
                     </div>
                     <div class="menu-accordion__panel">
                       <p>Нежное песочное печенье с кремовой начинкой из молочного шоколада и цельного фундука.</p>
@@ -89,6 +103,7 @@
                     <div class="menu-accordion__heading">
                       <span class="menu-accordion__number">02</span>
                       <h3 class="menu-accordion__name">Печенье с<br />шоколадной крошкой</h3>
+                      <img class="menu-accordion__thumb" src="assets/menu/chocolate_chip_cookies.png" alt="" loading="lazy" />
                     </div>
                     <div class="menu-accordion__panel">
                       <p>Мягкое печенье с щедрой россыпью шоколадной крошки — тот самый вкус к чашке горячего какао.</p>
@@ -99,6 +114,7 @@
                     <div class="menu-accordion__heading">
                       <span class="menu-accordion__number">03</span>
                       <h3 class="menu-accordion__name">Кокос<br />в шоколаде</h3>
+                      <img class="menu-accordion__thumb" src="assets/menu/bounty_in_chocolate.png" alt="" loading="lazy" />
                     </div>
                     <div class="menu-accordion__panel">
                       <p>Воздушная кокосовая начинка в тонком слое молочного шоколада — мягкий тропический вкус к кофе.</p>
@@ -109,6 +125,7 @@
                     <div class="menu-accordion__heading">
                       <span class="menu-accordion__number">04</span>
                       <h3 class="menu-accordion__name">Шоколадный<br />брауни</h3>
+                      <img class="menu-accordion__thumb" src="assets/menu/brownie.png" alt="" loading="lazy" />
                     </div>
                     <div class="menu-accordion__panel">
                       <p>Плотный брауни с кусочками орехов и бархатной шоколадной серединой.</p>
@@ -119,6 +136,7 @@
                     <div class="menu-accordion__heading">
                       <span class="menu-accordion__number">05</span>
                       <h3 class="menu-accordion__name">Вафли<br />с мороженым</h3>
+                      <img class="menu-accordion__thumb" src="assets/menu/regular_waffles.png" alt="" loading="lazy" />
                     </div>
                     <div class="menu-accordion__panel">
                       <p>Тёплые воздушные вафли, банан, шарик ванильного мороженого и щедрая струйка шоколада.</p>
@@ -157,8 +175,8 @@
           <p class="eyebrow">Говорите вниманием</p>
           <h2 id="gifts-title">Подарок, который<br />не нужно <em>объяснять.</em></h2>
           <p>Соберём коробку под ваш повод: для близкого человека, команды, гостей праздника или просто чтобы сказать «я рядом».</p>
-          <a class="button button--line" href="#visit">Заказать подарок <span>↗</span></a>
-          <ul class="check-list"><li>Наборы из трюфелей и фигурного шоколада</li><li>Подарочные сертификаты Баобаба</li><li>Корпоративные и индивидуальные заказы</li></ul>
+          <a class="button button--line" href="#visit">Заказать подарок <i data-lucide="move-up-right" class="icon" aria-hidden="true"></i></a>
+          <ul class="check-list"><li><i data-lucide="check" class="icon" aria-hidden="true"></i>Наборы из трюфелей и фигурного шоколада</li><li><i data-lucide="check" class="icon" aria-hidden="true"></i>Подарочные сертификаты Баобаба</li><li><i data-lucide="check" class="icon" aria-hidden="true"></i>Корпоративные и индивидуальные заказы</li></ul>
         </div>
         <figure class="gifts__image"><img src="assets/gift-box.png" alt="Подарочная коробка с шоколадными трюфелями" /></figure>
       </section>
@@ -166,25 +184,40 @@
       <section class="cafe section" id="cafe" aria-labelledby="cafe-title">
         <div class="shell cafe__grid">
           <figure class="cafe__image"><img src="assets/cafe-breakfast.png" alt="Горячее какао и вафли на завтрак" /></figure>
-          <div class="cafe__copy"><p class="eyebrow">Утро в Баобабе</p><h2 id="cafe-title">Кофейня,<br />где есть <em>время.</em></h2><p>Сюда можно забежать за кофе, а можно остаться подольше: на вафли, горячий шоколад, какао и хороший разговор.</p><div class="cafe__facts"><div><strong>07:00</strong><span>открываемся<br />по будням</span></div><div><strong>20:00</strong><span>до этого времени<br />ждём в гости</span></div></div><a class="text-link" href="#visit">Найти нас на карте <span>↓</span></a></div>
+          <div class="cafe__copy"><p class="eyebrow">Утро в Баобабе</p><h2 id="cafe-title">Кофейня,<br />где есть <em>время.</em></h2><p>Сюда можно забежать за кофе, а можно остаться подольше: на вафли, горячий шоколад, какао и хороший разговор.</p><div class="cafe__facts"><div><strong>07:00</strong><span>открываемся<br />по будням</span></div><div><strong>20:00</strong><span>до этого времени<br />ждём в гости</span></div></div><a class="text-link" href="#visit">Найти нас на карте <i data-lucide="arrow-down" class="icon" aria-hidden="true"></i></a></div>
         </div>
       </section>
 
       <section class="workshop section shell" id="workshop" aria-labelledby="workshop-title">
         <div class="workshop__top"><p class="eyebrow">Сделать самому</p><h2 id="workshop-title">Одна встреча.<br /><em>Много шоколада.</em></h2><p>Собирайте друзей, семью или команду — расскажем о шоколаде, покажем процесс и вместе создадим вкусный результат.</p></div>
-        <div class="workshop__frame"><img src="assets/making-chocolate.png" alt="Процесс создания шоколада вручную" /><div class="workshop__card"><span>Мастер‑класс</span><strong>Шоколад<br />своими руками</strong><a href="#visit">Узнать условия <b>→</b></a></div></div>
+        <div class="workshop__frame"><img src="assets/making-chocolate.png" alt="Процесс создания шоколада вручную" /><div class="workshop__card"><span>Мастер‑класс</span><strong>Шоколад<br />своими руками</strong><a href="#visit">Узнать условия <i data-lucide="arrow-right" class="icon" aria-hidden="true"></i></a></div></div>
+      </section>
+
+      <section class="concierge section section--tint" aria-labelledby="concierge-title">
+        <div class="shell concierge__grid">
+          <div>
+            <p class="eyebrow">Чтобы не гадать у витрины</p>
+            <h2 id="concierge-title">Начните<br />с <em>повода.</em></h2>
+          </div>
+          <div class="concierge__list">
+            <a href="tel:+79867126622"><span>01</span><strong>Нужен подарок</strong><p>Позвоните в мастерскую — подскажем, что собрать для близкого человека, команды или события.</p><i data-lucide="arrow-up-right" class="icon" aria-hidden="true"></i></a>
+            <a href="#cafe"><span>02</span><strong>Хочется на завтрак</strong><p>По будням ждём с 07:00; в меню есть вафли, горячий шоколад, какао и кофе.</p><i data-lucide="arrow-down" class="icon" aria-hidden="true"></i></a>
+            <a href="tel:+79867126622"><span>03</span><strong>Планируете встречу</strong><p>Для семьи, друзей или команды можно узнать условия шоколадного мастер‑класса.</p><i data-lucide="arrow-up-right" class="icon" aria-hidden="true"></i></a>
+          </div>
+        </div>
       </section>
 
       <section class="visit section section--dark" id="visit" aria-labelledby="visit-title">
         <div class="shell visit__grid">
-          <div><p class="eyebrow">Приходите знакомиться</p><h2 id="visit-title">Встретимся<br />в <em>Баобабе.</em></h2><p>Нижнекамск, проспект Строителей, 47Б.<br />Забегайте за коробкой трюфелей, чашкой какао или хорошим настроением.</p><a class="button button--light" href="tel:+79867126622">Позвонить в мастерскую <span>↗</span></a></div>
-          <div class="visit__details"><div><span>Мастерская и кофейня</span><a href="tel:+79867126622">+7 986 712‑66‑22</a><a href="tel:+79196804245">+7 919 680‑42‑45</a></div><div><span>Режим работы</span><p>Пн–Пт: 07:00–20:00<br />Сб–Вс: 09:00–20:00</p></div><div class="visit__direction"><span>Как добраться</span><a href="https://2gis.ru/nizhnekamsk/firm/70000001066552647" target="_blank" rel="noopener noreferrer">Открыть карту <b>↗</b></a></div></div>
+          <div><p class="eyebrow">Приходите знакомиться</p><h2 id="visit-title">Встретимся<br />в <em>Баобабе.</em></h2><p>Нижнекамск, проспект Строителей, 47Б.<br />Забегайте за коробкой трюфелей, чашкой какао или хорошим настроением.</p><a class="button button--light" href="tel:+79867126622">Позвонить в мастерскую <i data-lucide="move-up-right" class="icon" aria-hidden="true"></i></a></div>
+          <div class="visit__details"><div><span>Мастерская и кофейня</span><a href="tel:+79867126622">+7 986 712‑66‑22</a><a href="tel:+79196804245">+7 919 680‑42‑45</a></div><div><span>Режим работы</span><p>Пн–Пт: 07:00–20:00<br />Сб–Вс: 09:00–20:00</p></div><div class="visit__direction"><span>Как добраться</span><a href="https://2gis.ru/nizhnekamsk/firm/70000001066552647" target="_blank" rel="noopener noreferrer">Открыть карту <i data-lucide="move-up-right" class="icon" aria-hidden="true"></i></a></div></div>
         </div>
       </section>
     </main>
 
     <footer class="footer shell"><a class="brand" href="#top"><img src="logo.png" alt="Баобаб" /></a><p>Семейная мастерская шоколада<br />в Нижнекамске</p><div><a href="#catalog">Меню</a><a href="#gifts">Подарки</a><a href="#workshop">Мастер‑классы</a></div><p>© Баобаб, 2026</p></footer>
 
+    <script src="https://unpkg.com/lucide@1.25.0/dist/umd/lucide.min.js"></script>
     <script src="main.js"></script>
   </body>
 </html>

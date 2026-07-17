@@ -1,6 +1,12 @@
 const menuButton = document.querySelector('.menu-button');
 const nav = document.querySelector('.nav');
 
+window.lucide?.createIcons({
+  attrs: {
+    'stroke-width': 1.65,
+  },
+});
+
 menuButton?.addEventListener('click', () => {
   const isOpen = nav.classList.toggle('is-open');
   menuButton.setAttribute('aria-expanded', String(isOpen));
@@ -10,6 +16,33 @@ nav?.querySelectorAll('a').forEach((link) => link.addEventListener('click', () =
   nav.classList.remove('is-open');
   menuButton?.setAttribute('aria-expanded', 'false');
 }));
+
+const hero = document.querySelector('[data-hero]');
+const heroVideo = document.querySelector('[data-hero-video]');
+
+if (hero) {
+  const revealHero = () => {
+    hero.classList.remove('is-intro-pending');
+    hero.classList.add('is-intro-ready');
+  };
+
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  if (reduceMotion || !heroVideo) {
+    revealHero();
+  } else {
+    hero.classList.add('is-intro-pending');
+    heroVideo.addEventListener('ended', revealHero, { once: true });
+    heroVideo.addEventListener('error', revealHero, { once: true });
+    window.setTimeout(() => {
+      if (heroVideo.readyState < HTMLMediaElement.HAVE_METADATA) revealHero();
+    }, 1800);
+    window.setTimeout(revealHero, 8000);
+
+    const playback = heroVideo.play();
+    playback?.catch(revealHero);
+  }
+}
 
 document.addEventListener('keydown', (event) => {
   if (event.key !== 'Escape') return;
@@ -54,6 +87,7 @@ const getOrbitSlots = () => {
 const renderMenuScroll = () => {
   menuScrollFrame = 0;
   if (!menuScene || !menuCarousel || menuItems.length !== menuVisuals.length || !menuItems.length) return;
+  if (window.matchMedia('(max-width: 720px)').matches) return;
 
   const distance = Math.max(menuScene.offsetHeight - window.innerHeight, 1);
   const progress = clamp(-menuScene.getBoundingClientRect().top / distance, 0, 1);
