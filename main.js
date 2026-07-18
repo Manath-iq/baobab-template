@@ -3,10 +3,24 @@ document.documentElement.classList.add('js');
 const menuButton = document.querySelector('.menu-button');
 const nav = document.querySelector('.nav');
 
-window.lucide?.createIcons({
-  attrs: {
-    'stroke-width': 1.65,
-  },
+const ICONS = {
+  'menu': '<line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="18" y2="18"/>',
+  'x': '<path d="M18 6 6 18"/><path d="m6 6 12 12"/>',
+  'move-up-right': '<path d="M13 5h6v6"/><path d="M19 5 5 19"/>',
+  'arrow-down': '<path d="M12 5v14"/><path d="m19 12-7 7-7-7"/>',
+  'arrow-right': '<path d="M5 12h14"/><path d="m12 5 7 7-7 7"/>',
+  'arrow-up-right': '<path d="M7 7h10v10"/><path d="M7 17 17 7"/>',
+  'check': '<path d="M20 6 9 17l-5-5"/>',
+  'plus': '<path d="M5 12h14"/><path d="M12 5v14"/>',
+  'phone': '<path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>',
+};
+
+const iconHost = document.createElement('div');
+document.querySelectorAll('i[data-lucide]').forEach((placeholder) => {
+  const body = ICONS[placeholder.getAttribute('data-lucide')];
+  if (!body) return;
+  iconHost.innerHTML = `<svg class="${placeholder.className}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${body}</svg>`;
+  placeholder.replaceWith(iconHost.firstElementChild);
 });
 
 menuButton?.addEventListener('click', () => {
@@ -140,6 +154,32 @@ if (menuScene && menuCarousel && menuItems.length === menuVisuals.length && menu
   window.addEventListener('resize', requestMenuScrollRender);
   new ResizeObserver(requestMenuScrollRender).observe(menuCarousel);
   requestMenuScrollRender();
+}
+
+const callPill = document.querySelector('[data-call-pill]');
+const visitSection = document.querySelector('#visit');
+
+if (callPill && hero && visitSection) {
+  const pillBlockers = [hero, menuScene, visitSection].filter(Boolean);
+  let pillFrame = 0;
+
+  const renderCallPill = () => {
+    pillFrame = 0;
+    const blocked = pillBlockers.some((section) => {
+      const rect = section.getBoundingClientRect();
+      return rect.bottom > 0 && rect.top < window.innerHeight;
+    });
+    callPill.classList.toggle('is-visible', !blocked);
+  };
+
+  const requestCallPillRender = () => {
+    if (pillFrame) return;
+    pillFrame = requestAnimationFrame(renderCallPill);
+  };
+
+  window.addEventListener('scroll', requestCallPillRender, { passive: true });
+  window.addEventListener('resize', requestCallPillRender);
+  requestCallPillRender();
 }
 
 const revealTargets = [...document.querySelectorAll('[data-reveal]')];
