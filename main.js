@@ -1,3 +1,5 @@
+document.documentElement.classList.add('js');
+
 const menuButton = document.querySelector('.menu-button');
 const nav = document.querySelector('.nav');
 
@@ -51,6 +53,7 @@ document.addEventListener('keydown', (event) => {
 });
 
 const menuScene = document.querySelector('[data-menu-scene]');
+const menuPin = document.querySelector('.menu-scroll-pin');
 const menuCarousel = document.querySelector('[data-menu-carousel]');
 const menuItems = [...document.querySelectorAll('[data-menu-item]')];
 const menuVisuals = [...document.querySelectorAll('[data-menu-visual]')];
@@ -59,6 +62,7 @@ let menuScrollFrame = 0;
 
 const clamp = (value, min, max) => Math.min(Math.max(value, min), max);
 const lerp = (start, end, progress) => start + (end - start) * progress;
+const isCompactMenu = () => window.matchMedia('(max-width: 720px)').matches;
 
 const setActiveMenuProduct = (index) => {
   if (index === activeMenuIndex) return;
@@ -69,10 +73,11 @@ const setActiveMenuProduct = (index) => {
 const getOrbitSlots = () => {
   const width = menuCarousel.clientWidth;
   const height = menuCarousel.clientHeight;
-  const right = Math.min(width * .32, 225);
-  const left = Math.min(width * .28, 195);
-  const up = Math.min(height * .31, 180);
-  const down = Math.min(height * .29, 165);
+  const compact = isCompactMenu();
+  const right = Math.min(width * (compact ? .38 : .32), 225);
+  const left = Math.min(width * (compact ? .34 : .28), 195);
+  const up = Math.min(height * (compact ? .36 : .31), 180);
+  const down = Math.min(height * (compact ? .33 : .29), 165);
 
   return [
     { x: 0, y: 0, scale: 1, blur: 0, opacity: 1, rotation: 0, zIndex: 6 },
@@ -87,10 +92,11 @@ const getOrbitSlots = () => {
 const renderMenuScroll = () => {
   menuScrollFrame = 0;
   if (!menuScene || !menuCarousel || menuItems.length !== menuVisuals.length || !menuItems.length) return;
-  if (window.matchMedia('(max-width: 720px)').matches) return;
 
-  const distance = Math.max(menuScene.offsetHeight - window.innerHeight, 1);
-  const progress = clamp(-menuScene.getBoundingClientRect().top / distance, 0, 1);
+  const stickyTop = parseFloat(getComputedStyle(menuPin).top) || 0;
+  const viewport = window.innerHeight - stickyTop;
+  const distance = Math.max(menuScene.offsetHeight - viewport, 1);
+  const progress = clamp((stickyTop - menuScene.getBoundingClientRect().top) / distance, 0, 1);
   const journey = progress * (menuItems.length - 1);
   const baseIndex = Math.min(menuItems.length - 1, Math.floor(journey));
   const stepProgress = baseIndex === menuItems.length - 1 ? 0 : journey - baseIndex;
@@ -134,4 +140,23 @@ if (menuScene && menuCarousel && menuItems.length === menuVisuals.length && menu
   window.addEventListener('resize', requestMenuScrollRender);
   new ResizeObserver(requestMenuScrollRender).observe(menuCarousel);
   requestMenuScrollRender();
+}
+
+const revealTargets = [...document.querySelectorAll('[data-reveal]')];
+
+if (revealTargets.length) {
+  if ('IntersectionObserver' in window) {
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        const passedBy = entry.boundingClientRect.top < (entry.rootBounds ? entry.rootBounds.top : 0);
+        if (!entry.isIntersecting && !passedBy) return;
+        entry.target.classList.add('is-revealed');
+        revealObserver.unobserve(entry.target);
+      });
+    }, { rootMargin: '0px 0px -8% 0px', threshold: .08 });
+
+    revealTargets.forEach((target) => revealObserver.observe(target));
+  } else {
+    revealTargets.forEach((target) => target.classList.add('is-revealed'));
+  }
 }
